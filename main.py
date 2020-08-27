@@ -15,7 +15,7 @@ print(response.text)
 
 @app.route('/')  # '/' for the default page
 def home():
-  return render_template('home.html')
+  return render_template('index.html')
 
 
 @app.route('/eyetest' , methods=["GET","POST"])
