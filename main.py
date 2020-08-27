@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, redirect
 import random
 import requests,json
 
@@ -7,27 +7,26 @@ app = Flask(  # Create a flask app
 	template_folder='templates',  # Name of html file folder
 	static_folder='static'  # Name of directory for static files
 )
-url = "https://api.gazerecorder.com/GazeCloudAPI.js"
-response = requests.request("GET", url)
-
-print(response.text)
 
 
-@app.route('/')  # '/' for the default page
-def home():
-  return render_template('index.html')
+@app.route('/', methods=["GET","POST"])  # '/' for the default page
+def index():
+  if request.method == "GET":
+    return render_template('index.html')
+  else:
+    return render_template('test.html')
+
 
 
 @app.route('/eyetest' , methods=["GET","POST"])
 def eyetest():
-		if request.method == 'GET':
-			return render_template('home.html')
-		else:
-			url = "https://api.gazerecorder.com/GazeCloudAPI.js"
-			response = requests.request("GET")
-
-		print(response.text)
-		return render_template('eyetest.html')
+    if request.method == 'GET':
+      return render_template('eyetest.html')
+    else:	
+      url = "https://api.gazerecorder.com/GazeCloudAPI.js"
+      response = requests.request("POST", url)
+      print(response.text)
+      return redirect("https://api.gazerecorder.com")
 
 
 if __name__ == "__main__":  # Makes sure this is the main process
