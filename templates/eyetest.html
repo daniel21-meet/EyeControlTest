@@ -1,0 +1,29 @@
+<html>
+	<head>
+    <title></title>
+		<script src="https://api.gazerecorder.com/GazeCloudAPI.js" ></script>
+
+		<script>
+		GazeCloudAPI.StartEyeTracking();
+		GazeCloudAPI.OnResult = function (GazeData) { 
+			GazeData.state // 0: valid gaze data; -1 : face tracking lost, 1 : gaze data uncalibrated GazeData.docX // gaze x in document coordinates GazeData.docY // gaze y in document coordinates GazeData.time // timestamp }
+		GazeCloudAPI.StopEyeTracking();
+		GazeCloudAPI.OnCalibrationComplete =function(){ console.log('Eye Test Completed') }
+
+		</script>
+		
+  </head>
+
+  <body>
+		<form action="/eyetest" method="POST" style="max-width:500px;margin:auto">
+  <h2>Eye Test</h2>
+  <div class="input-container">
+    <i class="fa fa-user icon"></i>
+    <input class="input-field" type="text" placeholder="Name" name="Name">
+
+  <button type="submit" class="btn">Submit</button>
+</form>
+
+
+	</body>
+</html>
