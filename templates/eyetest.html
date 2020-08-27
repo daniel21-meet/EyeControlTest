@@ -6,9 +6,19 @@
 		<script>
 		GazeCloudAPI.StartEyeTracking();
 		GazeCloudAPI.OnResult = function (GazeData) { 
-			GazeData.state // 0: valid gaze data; -1 : face tracking lost, 1 : gaze data uncalibrated GazeData.docX // gaze x in document coordinates GazeData.docY // gaze y in document coordinates GazeData.time // timestamp }
+			GazeData.state 
+				0: valid gaze data; -1 : face tracking lost, 1 :
+			 	gaze data uncalibrated GazeData.docX 
+				gaze x in document coordinates GazeData.docY 
+				gaze y in document coordinates GazeData.time timestamp }
 		GazeCloudAPI.StopEyeTracking();
-		GazeCloudAPI.OnCalibrationComplete =function(){ console.log('Eye Test Completed') }
+		GazeCloudAPI.OnCalibrationComplete =function(){
+		console.log('Eye Test Completed !') }
+		GazeCloudAPI.OnCamDenied = function(){ console.log
+		('camera access denied') }
+		GazeCloudAPI.OnError = function(msg){ console.log('err:'
+		+ msg) }
+		GazeCloudAPI.UseClickRecalibration = true;
 
 		</script>
 		
